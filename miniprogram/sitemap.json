@@ -1,0 +1,7 @@
+{
+  "desc": "简登录",
+  "rules": [{
+    "action": "allow",
+    "page": "*"
+  }]
+}
