@@ -2,56 +2,33 @@
 const app = getApp()
 
 Page({
-  data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
-  },
-  onLoad: function() {
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              console.log(res.userInfo)
-            }
-          })
-        }
-      }
+  data: {},
+  onLoad: function() {},
+  async handleUoloadFile (e) {
+    const res = await wx.chooseImage({});
+    const imgUrl = res.tempFilePaths[0];
+    const fileManager = wx.getFileSystemManager();
+    const arrayBuffer = fileManager.readFileSync(imgUrl);
+    console.log(arrayBuffer)
+    wx.cloud.callFunction({
+      name: 'arrayBuffer2Buffer',
+      data: {
+        arrayBuffer
+      },
+      success: function(res) {
+        console.log(res) // 3
+      },
+      fail: console.error
     })
-  },
-  async bindGetUserInfo (e) {
-    const tempId = Date.now();
-    console.log('tempId', tempId)
-    const db = wx.cloud.database();
-    const COLLENTION_NAME = 'user';
-    const { userInfo } = e.detail;
-    try {
-      const { result } = await wx.cloud.callFunction({
-        name: 'getOpenid',
-      });
-      const { openid } = result;
-      const user = await db.collection(COLLENTION_NAME).where({
-        openid
-      }).get();
-      if (user.data.length === 0) {
-        await db.collection(COLLENTION_NAME).add({
-          data: {
-            ...userInfo,
-            openid,
-            tempId,
-          }
-        })
-        console.log('not finded', tempId)
-      } else {
-        await db.collection(COLLENTION_NAME).doc(user.data[0]._id).update({
-          data: {
-            tempId
-          }
-        })
-        console.log('finded', tempId)
-      }
-    } catch(err) {
-      throw err;
-    }
+    // wx.cloud.callFunction({
+    //   name: 'getImgText',
+    //   data: {
+    //     imgUrl: ''
+    //   },
+    //   success: function(res) {
+    //     console.log(res) // 3
+    //   },
+    //   fail: console.error
+    // })
   }
 })
