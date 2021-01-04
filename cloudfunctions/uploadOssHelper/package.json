@@ -1,5 +1,5 @@
 {
-  "name": "getOpenid",
+  "name": "uploadOssHelper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wx-server-sdk": "~2.3.2"
+    "crypto-js": "^4.0.0",
+    "wx-server-sdk": "^2.3.2"
   }
 }

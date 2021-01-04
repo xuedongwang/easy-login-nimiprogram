@@ -1,0 +1,21 @@
+<view class="container">
+  <button type="primary" plain="true" bindtap="handleAddKeywords" wx:if="{{!showAddKeywordInput}}">添加关键词</button>
+  <view wx:else>
+    <view class="weui-cell weui-cell_input">
+      <input class="weui-input" auto-focus bindinput="handleInputKeyword" placeholder="将会获取焦点"/>
+    </view>
+    <button type="primary" plain="true" bindtap="addKeywords">确定添加</button>
+  </view>
+  <view class="page__bd">
+    <mp-cells ext-class="my-cells" title="">
+      <mp-slideview buttons="{{slideButtons}}" wx:key="index" wx:for="{{keywords}}" bindbuttontap="slideButtonTap">
+        <mp-cell>
+            <view>{{ item.name }}</view>
+            <view slot="footer">
+              {{ item.count }}次
+            </view>
+        </mp-cell>
+      </mp-slideview>
+    </mp-cells>
+  </view>
+</view>

@@ -1,3 +1,4 @@
+<!--index.wxml-->
 <view class="container">
-  <button bindtap="handleUoloadFile">上传</button>
+  <button type="primary" plain="true" bindtap="handlePicture">拍照识别文字</button>
 </view>
