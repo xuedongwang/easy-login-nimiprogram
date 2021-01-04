@@ -6,9 +6,12 @@ Page({
     switchAudioChecked: false
   },
   onShow(){
-    this.getdata()
+    this.getSetting()
   },
-  async getdata () {
+  async getSetting () {
+    wx.showLoading({
+      title: '加载中...'
+    });
     const db = wx.cloud.database();
     const res = await wx.cloud.callFunction({
       name: 'getOpenid'
@@ -27,12 +30,16 @@ Page({
         switchAudioChecked: res.data.voiceBroadcast
       })
     }
+    wx.hideLoading();
   },
   async switchAudioChange (e) {
     const { value } = e.detail;
     const db = wx.cloud.database();
     const res = await wx.cloud.callFunction({
       name: 'getOpenid'
+    });
+    wx.showLoading({
+      title: '加载中...'
     });
     const userId = res.result.openid;
     const setting = await db.collection('setting').where({
@@ -53,6 +60,7 @@ Page({
     }
     this.setData({
       switchAudioChecked: value
-    })
+    });
+    wx.hideLoading();
   }
 })

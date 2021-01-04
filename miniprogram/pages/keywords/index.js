@@ -14,9 +14,6 @@ Page({
   onShow() {
     this.fetchKeywordsList()
   },
-  onLoad: function() {
-    this.fetchKeywordsList()
-  },
   async slideButtonTap(e) {
     wx.showModal({
       title: '提示',

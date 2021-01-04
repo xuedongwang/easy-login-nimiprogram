@@ -62,11 +62,8 @@ Page({
     const setting = await db.collection('setting').where({
       _openid: userId
     }).get();
-    if (setting.data.length === 0) {
-      return;
-    }
     this.setData({
-      setting: setting.data[0]
+      setting: setting.data.length > 0 ? setting.data[0] : {}
     });
     wx.hideLoading();
   },
