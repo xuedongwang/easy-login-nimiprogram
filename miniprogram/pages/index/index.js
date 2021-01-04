@@ -131,14 +131,13 @@ Page({
         items.forEach(item => {
           str += item.text;
         });
+        self.data.keywords.forEach(item => {
+          if (str.includes(item.name)) {
+            self.updateKeywordCount(item.name);
+            targetStr += item.name;
+          }
+        });
         if (self.data.setting.voiceBroadcast) {
-          self.data.keywords.forEach(item => {
-            if (str.includes(item.name)) {
-              console.log(item.name)
-              self.updateKeywordCount(item.name);
-              targetStr += item.name;
-            }
-          });
           AudioContext(targetStr);
         }
         wx.hideLoading();
