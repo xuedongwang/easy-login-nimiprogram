@@ -2,7 +2,7 @@ const cloud = require('wx-server-sdk')
 cloud.init()
 exports.main = async (event, context) => {
   try {
-    const { type, buffer, imgUrl } = event;
+    const { type, buffer, imgUrl, imgType } = event;
     if (type === 'url') {
       const result = await cloud.openapi.ocr.printedText({
         type: 'photo',
@@ -13,7 +13,7 @@ exports.main = async (event, context) => {
       const result = await cloud.openapi.ocr.printedText({
         type: 'photo',
         img: {
-          contentType: 'image/png',
+          contentType: `image/${imgType}`,
           value: Buffer.from(buffer)
         }
       })

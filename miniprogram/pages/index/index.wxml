@@ -1,5 +1,4 @@
 <!--index.wxml-->
 <view class="container">
-  <button type="primary" wx:if="{{setting.voiceBroadcast}}" plain="true" bindtap="handlePicture">拍照识别文字并语音播放</button>
-  <button type="primary" plain="true" wx:else bindtap="handlePicture">拍照识别文字</button>
+  <button type="primary" plain="true" bindtap="handlePicture">拍照识别文字</button>
 </view>

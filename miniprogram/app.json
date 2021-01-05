@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/keywords/index",
-    "pages/user/index"
+    "pages/scan/scan",
+    "pages/keywords/keywords",
+    "pages/user/user"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -12,21 +13,25 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/keywords/index",
-      "text": "关键词设置"
-    }, {
-      "pagePath": "pages/user/index",
-      "text": "个人中心"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/keywords/keywords",
+        "text": "关键词设置"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人中心"
+      }
+    ]
   },
   "plugins": {
     "WechatSI": {
-        "version": "0.3.1",
-        "provider": "wx069ba97219f66d99"
+      "version": "0.3.1",
+      "provider": "wx069ba97219f66d99"
     }
   },
   "sitemapLocation": "sitemap.json",
